@@ -19,6 +19,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
+ * 初始化权限控制的一些配置
+ *
  * @author ydg
  * @date 2018/7/20
  * @description

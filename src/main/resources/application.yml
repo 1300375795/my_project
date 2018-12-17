@@ -18,7 +18,7 @@ spring:
 cloud:
   security:
     protected:
-      url: /bean/test;/sysUser/save;
+      url: /bean/test;/sysUser/**;
     expiration: 200000000 #单位是毫秒
     signKey: yedeguo
     permitUrl: /login

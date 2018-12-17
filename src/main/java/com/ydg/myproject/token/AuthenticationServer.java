@@ -1,5 +1,6 @@
 package com.ydg.myproject.token;
 
+import com.ydg.myproject.config.PrintOutException;
 import com.ydg.myproject.exception.BizException;
 import com.ydg.myproject.exception.code.ExceptionCode;
 import java.io.IOException;
@@ -32,20 +33,27 @@ public class AuthenticationServer extends OncePerRequestFilter {
         this.redisConfig = redisConfig;
     }
 
+    /**
+     * 不能在下面的这个方法（子方法）中抛出异常
+     * 如果抛出的话则全局异常处理器是不能捕获异常的
+     *
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     * @throws BizException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException, BizException {
-        try {
-            if (isProtectedUrl(request)) {
-                // TODO: 2018-12-17 还可以做一些token处理，暂时不做
-                throw new BizException(ExceptionCode.TOKEN_EXPIRED.getCode(), ExceptionCode.TOKEN_EXPIRED.getMsg());
-            }
-            filterChain.doFilter(request, response);
-        } catch (BizException e) {
-            log.debug(e.getMessage());
-            throw new BizException(ExceptionCode.SYSTEM_BUSY.getCode(), ExceptionCode.SYSTEM_BUSY.getMsg());
+        if (isProtectedUrl(request)) {
+            // TODO: 2018-12-17 还可以做一些token处理，暂时不做
+            PrintOutException.printException(response,
+                    new BizException(ExceptionCode.TOKEN_EXPIRED.getCode(), ExceptionCode.TOKEN_EXPIRED.getMsg()));
+            return;
         }
-
+        filterChain.doFilter(request, response);
     }
 
     private boolean isAuth(HttpServletRequest request, String account) {
@@ -61,16 +69,12 @@ public class AuthenticationServer extends OncePerRequestFilter {
 
     private boolean isProtectedUrl(HttpServletRequest request) {
         String[] paths = protectedUrl.split(";");
-        boolean isProtectedUrl = false;
         String servletPath = request.getServletPath();
-        log.info("实际的路径是：{}", servletPath);
         for (String path : paths) {
-            log.info("受保护的地址是：{}", path);
             if (PATH_MATCHER.match(path, servletPath)) {
-                isProtectedUrl = true;
-                break;
+                return true;
             }
         }
-        return isProtectedUrl;
+        return false;
     }
 }

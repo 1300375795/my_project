@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @date 2018/8/10
  * @description
  */
-@ControllerAdvice(value = { "com.qcsz.cloud.user.sys", "com.qcsz.cloud.bms.sys.controller",
-        "com.qcsz.cloud.user.center", "com.qcsz.cloud.bms.ucenter.controller", "com.qcsz.cloud.security",
-        "com.qcsz.cloud.bms.ym", "com.qcsz.cloud.qcym.controller" })
+@ControllerAdvice(value = { "com.ydg.myproject" })
 @ResponseBody
 public class GlobalExceptionHandler {
     private final static Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);

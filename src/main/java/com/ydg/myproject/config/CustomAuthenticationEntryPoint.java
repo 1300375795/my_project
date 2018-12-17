@@ -19,7 +19,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException authException)
             throws IOException, ServletException {
-        throw new BizException(ExceptionCode.REQUEST_INVALID_NOT_CORRECT.getCode(),
-                ExceptionCode.REQUEST_INVALID_NOT_CORRECT.getMsg());
+        PrintOutException.printException(res, new BizException(ExceptionCode.REQUEST_INVALID_NOT_CORRECT.getCode(),
+                ExceptionCode.REQUEST_INVALID_NOT_CORRECT.getMsg()));
     }
 }
