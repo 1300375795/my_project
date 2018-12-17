@@ -20,7 +20,6 @@ public class AuthenticationServer extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException, BizException {
-        // TODO: 2018-12-17 测试下
         String method = request.getMethod();
         log.info("获取到的方法是：{}", method);
         filterChain.doFilter(request, response);

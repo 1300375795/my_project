@@ -21,7 +21,7 @@ public class AuthController implements com.ydg.myproject.common.Auth {
     @Auth
     @PostMapping("test")
     public RestResponse<String> testAuth() {
-        log.info("===============**测试下**================");
+        log.info("===============**进入需要权限验证的controller**================");
         return RestResponse.success("success");
     }
 }
