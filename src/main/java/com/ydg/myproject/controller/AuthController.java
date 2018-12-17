@@ -21,7 +21,7 @@ public class AuthController implements com.ydg.myproject.common.Auth {
     @Auth
     @PostMapping("test")
     public RestResponse<String> testAuth() {
-        log.info("===============****================");
+        log.info("===============**测试下**================");
         return RestResponse.success("success");
     }
 }
