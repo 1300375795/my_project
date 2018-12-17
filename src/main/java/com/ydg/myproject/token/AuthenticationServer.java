@@ -4,12 +4,12 @@ import com.ydg.myproject.config.PrintOutException;
 import com.ydg.myproject.exception.BizException;
 import com.ydg.myproject.exception.code.ExceptionCode;
 import java.io.IOException;
+import java.util.Map;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
@@ -20,9 +20,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * @date 2018/7/20
  * @description
  */
+@Slf4j
 public class AuthenticationServer extends OncePerRequestFilter {
     private static final PathMatcher PATH_MATCHER = new AntPathMatcher();
-    Logger log = LoggerFactory.getLogger(AuthenticationServer.class);
     private String protectedUrl;
     private TokenServer tokenServer;
     private RedisTemplate redisConfig;
@@ -48,9 +48,13 @@ public class AuthenticationServer extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException, BizException {
         if (isProtectedUrl(request)) {
-            // TODO: 2018-12-17 还可以做一些token处理，暂时不做
-            PrintOutException.printException(response,
-                    new BizException(ExceptionCode.TOKEN_EXPIRED.getCode(), ExceptionCode.TOKEN_EXPIRED.getMsg()));
+            Map<String, Object> map = tokenServer.validateToken(request);
+            Object user = map.get("user");
+            if (user == null) {
+                PrintOutException.printException(response, new BizException(ExceptionCode.TOKEN_SIGNATURE.getCode(),
+                        ExceptionCode.TOKEN_SIGNATURE.getMsg()));
+            }
+            filterChain.doFilter(request, response);
             return;
         }
         filterChain.doFilter(request, response);

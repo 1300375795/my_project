@@ -1,6 +1,7 @@
 package com.ydg.myproject.token;
 
 import com.ydg.myproject.common.RedisConstant;
+import com.ydg.myproject.entity.SysUser;
 import com.ydg.myproject.exception.BizException;
 import com.ydg.myproject.exception.code.ExceptionCode;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -21,8 +22,8 @@ import org.springframework.stereotype.Component;
  * @date 2018/7/20
  * @description
  */
-@Component
 @Slf4j
+@Component
 public class TokenServer {
     @Value("${cloud.security.expiration}")
     private long expiration;
@@ -40,7 +41,10 @@ public class TokenServer {
     public String generateToken(String account) {
         try {
             Map<String, Object> claims = new HashMap<>(2);
-            claims.put("account", account);
+            SysUser sysUser = new SysUser();
+            sysUser.setAccount(account);
+            sysUser.setEmail("13868601915@163.com");
+            claims.put("user", sysUser);
             String jwt = Jwts.builder().setClaims(claims)
                     .setExpiration(new Date(System.currentTimeMillis() + expiration))
                     .signWith(SignatureAlgorithm.HS512, signKey).compact();

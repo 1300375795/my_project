@@ -1,5 +1,6 @@
 package com.ydg.myproject.controller;
 
+import com.ydg.myproject.common.BaseController;
 import com.ydg.myproject.common.RestResponse;
 import com.ydg.myproject.entity.SysUser;
 import com.ydg.myproject.service.ISysUserService;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysUser")
 @Api(value = "/sysUser", description = "用户controller")
-public class SysUserController {
+public class SysUserController extends BaseController {
 
     @Autowired
     private ISysUserService userService;
@@ -39,6 +40,7 @@ public class SysUserController {
     @ApiOperation(value = "保存一个用户信息", notes = "保存一个用户的具体信息")
     public RestResponse<SysUser> save(@RequestBody SysUser sysUser) throws Throwable {
         log.info("===============**进入保存一个用户的controller**================");
+        log.info("给出的参数是：{}", sysUser);
         sysUser.setId(null);
         SysUser save = userService.save(sysUser);
         log.info("保存的结果是：{}", save);

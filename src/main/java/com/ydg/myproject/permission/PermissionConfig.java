@@ -1,21 +1,16 @@
-package com.ydg.myproject.annotation.custom;
+package com.ydg.myproject.permission;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.springframework.stereotype.Component;
 
-/**
- * @author ydg
- * @Company qcsz
- * @date 2018-12-17
- * @description
- */
-@Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
 @Documented
-@Component
-public @interface Auth {
+public @interface PermissionConfig {
+
+    String[] codes() default {};
+
 }

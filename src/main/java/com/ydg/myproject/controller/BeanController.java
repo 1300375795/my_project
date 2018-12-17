@@ -1,6 +1,7 @@
 package com.ydg.myproject.controller;
 
 import com.ydg.myproject.annotation.bean.TestBean;
+import com.ydg.myproject.common.BaseController;
 import com.ydg.myproject.entity.SysUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @Api(value = "/bean", description = "bean注解的测试")
-public class BeanController {
+public class BeanController extends BaseController {
     @Autowired
     private TestBean testBean;
 

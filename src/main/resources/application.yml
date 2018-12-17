@@ -20,6 +20,6 @@ cloud:
     protected:
       url: /bean/test;/sysUser/**;
     expiration: 200000000 #单位是毫秒
-    signKey: yedeguo
+    signKey: my_project
     permitUrl: /login
 
