@@ -1,0 +1,24 @@
+server:
+  port: 8888
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/my_project?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: ydg@971810252
+    driver-class-name: com.mysql.jdbc.Driver
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: myproject
+
+
+cloud:
+  security:
+#    protected:
+#      url: /bms/sys/**;/bms/ym/**
+    expiration: 200000000 #单位是毫秒
+    signKey: yedeguo
+#    permitUrl: /bms/login
