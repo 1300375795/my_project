@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/9/3
  * @description
  */

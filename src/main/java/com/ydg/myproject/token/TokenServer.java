@@ -17,7 +17,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/7/20
  * @description
  */

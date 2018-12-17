@@ -1,7 +1,7 @@
 package com.ydg.myproject.exception;
 
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/8/10
  * @description
  */

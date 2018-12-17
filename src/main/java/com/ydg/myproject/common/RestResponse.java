@@ -5,7 +5,7 @@ import com.ydg.myproject.exception.BaseExceptionCode;
 import com.ydg.myproject.exception.BizException;
 
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/8/10
  * @description
  */
@@ -28,7 +28,6 @@ public class RestResponse<T> {
      */
     private T data;
 
-
     private RestResponse() {
         super();
     }
@@ -50,10 +49,9 @@ public class RestResponse<T> {
         return new RestResponse<>(SUCCESS, data, "success");
     }
 
-
     public static <E> RestResponse<E> successPage(E data) {
-        RestResponse R = new RestResponse<>(SUCCESS, data, "success", true);
-        return R;
+        RestResponse restResponse = new RestResponse<>(SUCCESS, data, "success", true);
+        return restResponse;
     }
 
     public RestResponse(int resultCode, T data, String resultMsg, boolean isPage) {
@@ -106,7 +104,9 @@ public class RestResponse<T> {
      */
     public static <E> RestResponse<E> fail(BaseExceptionCode exceptionCode) {
         return new RestResponse<>(exceptionCode.getCode(), null,
-                (exceptionCode.getMsg() == null || exceptionCode.getMsg().isEmpty()) ? DEF_ERROR_MESSAGE : exceptionCode.getMsg());
+                (exceptionCode.getMsg() == null || exceptionCode.getMsg().isEmpty()) ?
+                        DEF_ERROR_MESSAGE :
+                        exceptionCode.getMsg());
     }
 
     public static <E> RestResponse<E> fail(BizException exception) {
@@ -154,7 +154,6 @@ public class RestResponse<T> {
         this.resultMsg = resultMsg;
     }
 
- 
     /**
      * 逻辑处理是否成功
      *

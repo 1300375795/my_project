@@ -3,18 +3,16 @@ package com.ydg.myproject.exception.code;
 import com.ydg.myproject.exception.BaseExceptionCode;
 
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/8/10
  * @description 统一异常码
  */
 public enum ExceptionCode implements BaseExceptionCode {
 
     //系统
-    SYSTEM_BUSY(-1, "系统繁忙，请稍候再试"),
-    BAD_REQUEST(-2, "400"),
-    UNAUTHORIZED(-3, "401"),
-    FORBIDDEN(-4, "403"),
-    NOT_FOUND(-5, "404"),
+    SYSTEM_BUSY(-1, "系统繁忙，请稍候再试"), BAD_REQUEST(-2, "400"), UNAUTHORIZED(-3, "401"), FORBIDDEN(-4, "403"), NOT_FOUND(-5,
+            "404"), METHOD_NOT_ALLOWED(-6, "405"), UNKNOWN(-7, "未知异常"),
+
     //菜单管理
     MENU_NULL(1001, "菜单信息不能为空"),
     MENU_PID_NULL(1002, "父节点不能为空"),

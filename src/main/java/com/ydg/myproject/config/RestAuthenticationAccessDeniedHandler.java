@@ -9,7 +9,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/8/23
  * @description
  */

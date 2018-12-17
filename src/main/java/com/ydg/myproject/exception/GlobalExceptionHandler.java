@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * @author dongzf
+ * 全局异常处理类
+ *
+ * @author ydg
  * @date 2018/8/10
  * @description
  */
-@ControllerAdvice(value = {
-        "com.qcsz.cloud.user.sys","com.qcsz.cloud.bms.sys.controller",
-        "com.qcsz.cloud.user.center","com.qcsz.cloud.bms.ucenter.controller",
-        "com.qcsz.cloud.security","com.qcsz.cloud.bms.ym","com.qcsz.cloud.qcym.controller"
-})
-@ResponseBody  //返回结果为json
+@ControllerAdvice(value = { "com.qcsz.cloud.user.sys", "com.qcsz.cloud.bms.sys.controller",
+        "com.qcsz.cloud.user.center", "com.qcsz.cloud.bms.ucenter.controller", "com.qcsz.cloud.security",
+        "com.qcsz.cloud.bms.ym", "com.qcsz.cloud.qcym.controller" })
+@ResponseBody
 public class GlobalExceptionHandler {
     private final static Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
@@ -33,12 +33,11 @@ public class GlobalExceptionHandler {
         return new RestResponse(ex.getCode(), null, ex.getMessage());
     }
 
-
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ResponseBody
     public RestResponse processAccessDeniedException(AccessDeniedException e) {
-        return new RestResponse(ExceptionCode.ERR_ACCESS_DENIED.getCode(),null, e.getMessage());
+        return new RestResponse(ExceptionCode.ERR_ACCESS_DENIED.getCode(), null, e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
@@ -48,7 +47,6 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     *
      * @param e
      * @return
      * @throws BindException

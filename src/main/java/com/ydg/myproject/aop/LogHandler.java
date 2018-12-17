@@ -1,16 +1,15 @@
 package com.ydg.myproject.aop;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
-
 /**
- * @author dongzf
+ * @author ydg
  * @date 2018/10/8
  * @description 日志处理
  */

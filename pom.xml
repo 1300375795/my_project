@@ -141,6 +141,8 @@
             <version>2.3</version>
             <scope>compile</scope>
         </dependency>
+
+        <!--权限校验-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
