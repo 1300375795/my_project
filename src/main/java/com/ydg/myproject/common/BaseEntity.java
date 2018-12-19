@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author ydg
@@ -14,9 +15,10 @@ import lombok.Data;
  * @description
  */
 @Data
+@Slf4j
 public abstract class BaseEntity implements Serializable {
 
-    @TableId(value = "id", type = IdType.ID_WORKER_STR)
+    @TableId(value = "id", type = IdType.UUID)
     private String id;
 
     /**
@@ -51,9 +53,11 @@ public abstract class BaseEntity implements Serializable {
 
     public void baseSave() {
         this.createBy = "ydg";
-        this.createDate = new Date();
+        Date date = new Date();
+        log.info("创建时间为:{}", date);
+        this.createDate = date;
         this.updateBy = "ydg";
-        this.updateDate = new Date();
+        this.updateDate = date;
         this.delFlag = false;
     }
 
@@ -62,6 +66,7 @@ public abstract class BaseEntity implements Serializable {
             this.delFlag = true;
         }
         this.updateDate = new Date();
+        log.info("创建时间为:{}", this.updateBy);
         this.updateBy = "ydg";
     }
 }

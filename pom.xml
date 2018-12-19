@@ -154,6 +154,20 @@
             <version>4.2.7.RELEASE</version>
         </dependency>
 
+
+        <!--工具依赖-->
+        <!--guava-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0-jre</version>
+        </dependency>
+        <!--1.0.6-->
+        <dependency>
+            <groupId>com.0opslab</groupId>
+            <artifactId>0opslab-utils</artifactId>
+            <version>1.0.6</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -42,8 +42,9 @@ public class SysUserController extends BaseController {
         log.info("===============**进入保存一个用户的controller**================");
         log.info("给出的参数是：{}", sysUser);
         sysUser.setId(null);
+        sysUser.baseSave();
         SysUser save = userService.save(sysUser);
-        log.info("保存的结果是：{}", save);
+        log.info("保存的结果是：{}", save.getId());
         return RestResponse.success(sysUser);
     }
 
