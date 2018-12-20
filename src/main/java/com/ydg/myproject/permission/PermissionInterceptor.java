@@ -30,16 +30,20 @@ public class PermissionInterceptor implements HandlerInterceptor {
     public static final String CONTENT_TYPE_JSON = "application/json;charset=UTF-8";
     @Autowired
     private TokenServer tokenServer;
-    //权限检验开关,一般情况下不允许修改，只用于开发内部为调试方便而设置
-    //@Value("${security.com.ycd.common.auth.permission.check.flag:true}")
-    //@Setter
-    private boolean permissionCheckFlag = true;
+
+    /**
+     * 权限检验开关,一般情况下不允许修改，只用于开发内部为调试方便而设置
+     */
+    private boolean permissionCheckFlag = false;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         // TODO: 2018-12-17 这个拦截器没有进来,需要看下是什么问题
         if (!(handler instanceof HandlerMethod)) {
+            return true;
+        }
+        if (!permissionCheckFlag) {
             return true;
         }
         log.info("PermissionInterceptor.preHandle(). request uri = {}, method = {}", request.getRequestURI(),
@@ -70,7 +74,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        if (!permissionCheckFlag || codes == null) {
+        if (codes == null) {
             return true;
         }
 

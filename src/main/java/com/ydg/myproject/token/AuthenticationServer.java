@@ -1,10 +1,7 @@
 package com.ydg.myproject.token;
 
-import com.ydg.myproject.config.PrintOutException;
 import com.ydg.myproject.exception.BizException;
-import com.ydg.myproject.exception.code.ExceptionCode;
 import java.io.IOException;
-import java.util.Map;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -47,16 +44,16 @@ public class AuthenticationServer extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException, BizException {
-        if (isProtectedUrl(request)) {
-            Map<String, Object> map = tokenServer.validateToken(request);
-            Object user = map.get("user");
-            if (user == null) {
-                PrintOutException.printException(response, new BizException(ExceptionCode.TOKEN_SIGNATURE.getCode(),
-                        ExceptionCode.TOKEN_SIGNATURE.getMsg()));
-            }
-            filterChain.doFilter(request, response);
-            return;
-        }
+        //        if (isProtectedUrl(request)) {
+        //            Map<String, Object> map = tokenServer.validateToken(request);
+        //            Object user = map.get("user");
+        //            if (user == null) {
+        //                PrintOutException.printException(response, new BizException(ExceptionCode.TOKEN_SIGNATURE.getCode(),
+        //                        ExceptionCode.TOKEN_SIGNATURE.getMsg()));
+        //            }
+        //            filterChain.doFilter(request, response);
+        //            return;
+        //        }
         filterChain.doFilter(request, response);
     }
 

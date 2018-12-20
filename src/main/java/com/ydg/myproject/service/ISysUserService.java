@@ -1,7 +1,7 @@
 package com.ydg.myproject.service;
 
-import com.ydg.myproject.entity.SysUser;
 import com.baomidou.mybatisplus.service.IService;
+import com.ydg.myproject.entity.SysUser;
 
 /**
  * <p>
@@ -20,4 +20,11 @@ public interface ISysUserService extends IService<SysUser> {
      */
     SysUser save(SysUser sysUser);
 
+    /**
+     * 根据id获取用户
+     *
+     * @param id
+     * @return
+     */
+    SysUser getById(String id);
 }

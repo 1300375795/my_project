@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @Slf4j
 public abstract class BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1327894327489237894L;
 
     @TableId(value = "id", type = IdType.UUID)
     private String id;

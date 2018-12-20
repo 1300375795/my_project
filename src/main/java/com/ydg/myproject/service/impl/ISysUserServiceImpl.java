@@ -28,4 +28,15 @@ public class ISysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUser> im
         this.insert(sysUser);
         return sysUser;
     }
+
+    /**
+     * 根据id获取用户
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public SysUser getById(String id) {
+        return this.selectById(id);
+    }
 }
