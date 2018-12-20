@@ -38,7 +38,7 @@ public class ThreadServiceImpl implements ThreadService {
     @Component
     class ThreadComponent {
         /**
-         * 线程1执行的任务
+         * 线程一执行的任务
          */
         @Async
         public void threadIOne() {
@@ -47,6 +47,9 @@ public class ThreadServiceImpl implements ThreadService {
             }
         }
 
+        /**
+         * 线程二执行的任务
+         */
         @Async
         public void threadTwo() {
             for (int i = 0; i < Constant.THREAD_RUN_TIME; i++) {
