@@ -2,7 +2,9 @@ package com.ydg.myproject.service.impl;
 
 import com.ydg.myproject.service.ThreadService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,29 +16,35 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class ThreadServiceImpl implements ThreadService {
-
-    @Async
-    void thread1() {
-        log.info("thread1,当前执行的线程是：" + Thread.currentThread().getName());
-        for (int i = 0; i < 100; i++) {
-            log.info("第一个线程执行到：" + i + "条记录");
-        }
-    }
-
-    @Async
-    void thread2() {
-        log.info("thread2,当前执行的线程是：" + Thread.currentThread().getName());
-        for (int i = 0; i < 100; i++) {
-            log.info("第二个线程执行到：" + i + "条记录");
-        }
-    }
+    @Autowired
+    private ThreadComponent threadComponent;
 
     /**
      * 启动多个线程
      */
     @Override
     public void runManyThread() {
-        thread1();
-        thread2();
+        log.info("当前的线程是：" + Thread.currentThread().getName());
+        //        for (int i = 0; i < 2; i++) {
+        threadComponent.thread1();
+        threadComponent.thread2();
+        //        }
+    }
+
+    @Component
+    class ThreadComponent {
+        @Async
+        public void thread1() {
+            for (int i = 0; i < 100; i++) {
+                log.info("thread1,当前执行的线程是：" + Thread.currentThread().getName() + "执行到：" + i + "条记录");
+            }
+        }
+
+        @Async
+        public void thread2() {
+            for (int i = 0; i < 100; i++) {
+                log.info("thread2,当前执行的线程是：" + Thread.currentThread().getName() + "执行到：" + i + "条记录");
+            }
+        }
     }
 }
