@@ -26,8 +26,8 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public void runManyThread() {
         log.info("当前的线程是：" + Thread.currentThread().getName());
-        threadComponent.thread1();
-        threadComponent.thread2();
+        threadComponent.threadIOne();
+        threadComponent.threadTwo();
     }
 
     /**
@@ -37,17 +37,20 @@ public class ThreadServiceImpl implements ThreadService {
      */
     @Component
     class ThreadComponent {
+        /**
+         * 线程1执行的任务
+         */
         @Async
-        public void thread1() {
+        public void threadIOne() {
             for (int i = 0; i < Constant.THREAD_RUN_TIME; i++) {
-                log.info("thread1,当前执行的线程是：" + Thread.currentThread().getName() + "执行到：" + i + "条记录");
+                log.info("threadOne,当前执行的线程是：" + Thread.currentThread().getName() + "执行到：" + i + "条记录");
             }
         }
 
         @Async
-        public void thread2() {
+        public void threadTwo() {
             for (int i = 0; i < Constant.THREAD_RUN_TIME; i++) {
-                log.info("thread2,当前执行的线程是：" + Thread.currentThread().getName() + "执行到：" + i + "条记录");
+                log.info("threadTwo,当前执行的线程是：" + Thread.currentThread().getName() + "执行到：" + i + "条记录");
             }
         }
     }
