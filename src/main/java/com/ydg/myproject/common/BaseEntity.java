@@ -1,13 +1,11 @@
 package com.ydg.myproject.common;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 
 /**
  * @author ydg
@@ -19,37 +17,27 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1327894327489237894L;
 
-    @TableId(value = "id", type = IdType.UUID)
+    @Comment("主键id")
     private String id;
 
-    /**
-     * 是否可用标志 1、true ，0、false
-     */
-    @TableField(value = "del_flag", fill = FieldFill.INSERT)
+    @Column("del_flag")
+    @Comment("是否可用标志 1、true ，0、false")
     public Boolean delFlag;
 
-    /**
-     * 创建人
-     */
-    @TableField(value = "create_by", fill = FieldFill.INSERT)
+    @Column("create_by")
+    @Comment("创建人")
     public String createBy;
 
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_date", fill = FieldFill.INSERT)
+    @Column("create_date")
+    @Comment("创建时间")
     public Date createDate;
 
-    /**
-     * 更新人
-     */
-    @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
+    @Column("update_by")
+    @Comment("更新人")
     public String updateBy;
 
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_date", fill = FieldFill.INSERT_UPDATE)
+    @Column("update_date")
+    @Comment("更新时间")
     public Date updateDate;
 
     public void baseSave() {

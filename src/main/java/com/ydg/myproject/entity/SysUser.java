@@ -1,12 +1,13 @@
 package com.ydg.myproject.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.ydg.myproject.common.BaseEntity;
 import com.ydg.myproject.enums.UserStatusEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 
 /**
  * <p>
@@ -53,9 +54,7 @@ public class SysUser extends BaseEntity {
      */
     private String username;
 
-    /**
-     * 用户状态
-     */
-    @TableField("user_status")
+    @Column("user_status")
+    @Comment("用户状态")
     private UserStatusEnum userStatus;
 }
